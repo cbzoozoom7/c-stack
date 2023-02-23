@@ -1,6 +1,7 @@
 /*
- * Your comment header here
- * modify this file as needed to complete the assignment
+ * stack.cpp
+ * Chris Bowman
+ * Recieved 23 Feb 2023
  */
 
 // each cpp includes ONLY it's header directly

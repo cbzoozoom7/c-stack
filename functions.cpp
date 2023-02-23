@@ -1,6 +1,7 @@
 /*
- * Your comment header here
- * modify this file as needed to complete the assignment
+ * functions.cpp
+ * Chris Bowman
+ * Recived 23 Feb 2023
  */
 
 #include "functions.h"

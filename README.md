@@ -1,2 +1,2 @@
-# stack-starter
-Starter code for creating a simple stack.
+# stack
+My demo of a stack that works by storing pointers to Data objects. Stack size is determined by command line argument.

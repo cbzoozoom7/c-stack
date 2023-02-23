@@ -1,6 +1,7 @@
 /*
- * your header here
- * 
+ * main.h
+ * Chris Bowman
+ * Recieved 23 Feb 2023
  */
 
 #ifndef STACKS_MAIN_H
