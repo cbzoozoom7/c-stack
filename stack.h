@@ -6,23 +6,19 @@
 
 #ifndef STACK_H
 #define STACK_H
-
+#define DEFAULT_SIZE 10
+#define MIN_SIZE 2
 /*
  * there are no other includes here because they are not needed.
  * if you do need other things included, they would go here
  */
 
 #include "data.h"
-
 class Stack {
 
 public:
-
-    /* 
-     * write all your public method prototypes here
-     * this includes you constructor and destructor
-     */
-    
+    Stack(int);
+    bool push(int, string*);
 private:
 
     /* 

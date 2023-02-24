@@ -5,8 +5,13 @@
  */
 
 // each cpp includes ONLY it's header directly
+/////////////////////////*its
 #include "stack.h"
-
-/*
- * write all your stack methods here
- */
+Stack::Stack(int s) {
+    top = -1;
+    if (s >= MIN_SIZE) {
+        size = s;
+    } else {
+        size = 10;
+    }
+}

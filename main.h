@@ -19,6 +19,8 @@
  * additional directives here
  * 
  */
-
+#include "stack.h"
+using std::cout;
+using std::endl;
 
 #endif /* STACKS_MAIN_H */

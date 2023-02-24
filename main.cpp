@@ -10,7 +10,18 @@ int main(int argc, char **argv) {
     // here for the rand_string() function
     // if you don't use it, get rid of this
     srand(time(NULL));
-
+    int size;
+    bool goodArg = false;
+    try {
+        size = std::stoi(argv[1]);
+        goodArg = true;
+    } catch (...) {
+        cout << "Please pass in the desired stack size as an int in the first command line argument." << endl;
+    }
+    if (goodArg) {
+        Stack myStack(size);
+    }
+    
     /* ***************************************************************
      * First get your arguments from the command line. Your program must
      * accept one and only one argument not including the program name
@@ -58,7 +69,7 @@ int main(int argc, char **argv) {
     std::string strtemp;
     for(int i=0; i<20; i++){
         rand_string(&strtemp);
-        std::cout << strtemp << std::endl;
+        // std::cout << strtemp << std::endl; //not now, please.
     }
     
     /* ***************************************************************
