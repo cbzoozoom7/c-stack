@@ -8,7 +8,6 @@
 
 int main(int argc, char **argv) {
     // here for the rand_string() function
-    // if you don't use it, get rid of this
     srand(time(NULL));
     int size;
     bool goodArg = false;
@@ -20,34 +19,24 @@ int main(int argc, char **argv) {
     }
     if (goodArg) {
         Stack myStack(size);
+        //attempt to push random data onto the stack
+        int pushSuccess = 0;
+        int pushFail = 0;
+        for (int i = 0; i < (size * SCALE); i++) {
+            int myId = rand();
+            if ((rand() % 2) == 0) {
+                myId *= -1;
+            }
+            std::string strtemp;
+            rand_string(&strtemp);
+            if (myStack.push(myId, &strtemp)) {
+                pushSuccess++;
+            } else {
+                pushFail++;
+            }
+        }
+        cout << "Successful pushes: \t" << pushSuccess << " \tFailed pushes: \t" << pushFail << endl;
     }
-    
-    /* ***************************************************************
-     * First get your arguments from the command line. Your program must
-     * accept one and only one argument not including the program name
-     * itself. That argument must be an integer. If anything else is entered
-     * in any way, terminate the program with a suitable error message
-     * telling the user how to use your program correctly.
-     * 
-     * Remember, you may not use more than one return, even in main()
-     * and you may not use exit() or anything like that.
-     * ***************************************************************/
-    
-    /* ***************************************************************
-     * Use the number passed in from the command line and declare a stack
-     * that uses that number as the size of the stack. NOTE: Make sure
-     * your stack checks the number passed in to it. You cannot rely
-     * on main checking the number first, each part of every program and
-     * ADT is always responsible for it's own error checking. Main must
-     * check the user gave it an int. The stack must check main()
-     * gave it a good number. This is proper error checking, no part of
-     * any program can assume it's caller is behaving correctly. To do this,
-     * try passing -1 or 0 or some other "bad" number to the stack from
-     * main and make sure your stack rejects it, or defaults to some
-     * pre-defined default value. This will be tested during grading.
-     * ***************************************************************/
-
-    
     /* ***************************************************************
      * Throughly test your stack. You must perform an exhaustive series
      * of tests on your stack. Show all possible ways your stack can be used
@@ -64,13 +53,6 @@ int main(int argc, char **argv) {
      * only here to demonstrate the function. DELETE it once you study
      * it and understand it and can use it yourself in your code.
      * ***************************************************************/
-    
-    // make 20 random strings, store them, display them
-    std::string strtemp;
-    for(int i=0; i<20; i++){
-        rand_string(&strtemp);
-        // std::cout << strtemp << std::endl; //not now, please.
-    }
     
     /* ***************************************************************
      * Your code will be tested by applying your stack to a custom main

@@ -6,7 +6,7 @@
 
 #ifndef STACKS_MAIN_H
 #define STACKS_MAIN_H
-
+#define SCALE 10
 // you probably need all these,
 // but if you don't get rid of what you don't need
 #include <stdlib.h>   /* srand, rand */

@@ -14,4 +14,16 @@ Stack::Stack(int s) {
     } else {
         size = 10;
     }
+    stack = new Data*[size];
+}
+bool Stack::push(int id, string *s) {
+    bool pushed = false;
+    if (top < size-1 && id > 0 && *s != "") {
+        Data *pushData = new Data();
+        pushData -> id = id;
+        pushData -> information = *s;
+        stack[++top] = pushData;
+        pushed = true;
+    }
+    return pushed;
 }
