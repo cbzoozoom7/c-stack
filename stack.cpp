@@ -30,3 +30,16 @@ bool Stack::push(int id, string *s) {
 bool Stack::isEmpty() {
     return (top < 0);
 }
+bool Stack::peek(Data *d) {
+    bool peeked = false; //ok now i understand why Apple names their bools like that.
+    if (!isEmpty()) {
+        Data topD = *stack[top];
+        d -> id = topD.id;
+        d -> information = topD.information;
+        peeked = true;
+    } else {
+        d -> id = -1;
+        d -> information = "";
+    }
+    return peeked;
+}

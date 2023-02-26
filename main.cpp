@@ -47,6 +47,11 @@ int main(int argc, char **argv) {
             rand_string(&strtemp);
             if (myStack.push(myId, &strtemp)) {
                 pushSuccess++;
+                Data *pushTester = new Data;
+                myStack.peek(pushTester);
+                if ((pushTester -> id != myId) || (pushTester -> information != strtemp)) {
+                    cout << "incorrect push" << endl;
+                }
             } else {
                 pushFail++;
             }

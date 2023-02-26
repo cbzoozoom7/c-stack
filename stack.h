@@ -19,7 +19,9 @@ class Stack {
 public:
     Stack(int);
     bool push(int, string*);
+    //bool push (Data*);
     bool isEmpty();
+    bool peek(Data*);
 private:
 
     /* 
