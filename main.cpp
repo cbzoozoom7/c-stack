@@ -52,6 +52,7 @@ int main(int argc, char **argv) {
                 if ((pushTester -> id != myId) || (pushTester -> information != strtemp)) {
                     cout << "incorrect push" << endl;
                 }
+                delete pushTester;
             } else {
                 pushFail++;
             }
