@@ -19,10 +19,26 @@ int main(int argc, char **argv) {
     }
     if (goodArg) {
         Stack myStack(size);
+        //making sure it's empty
+        int emptyCount = 0;
+        for (int i = 0; i < (SCALE * SCALE); i++) {
+            if (myStack.isEmpty()) {
+                emptyCount++;
+            }
+        }
+        if (emptyCount == (SCALE * SCALE)) {
+            cout << "My stack is very empty." << endl;
+        } else {
+            cout << "Somebody's been in my stack." << endl;
+        }
+        emptyCount = 0;
         //attempt to push random data onto the stack
         int pushSuccess = 0;
         int pushFail = 0;
         for (int i = 0; i < (size * SCALE); i++) {
+            if (myStack.isEmpty()) {
+                emptyCount++;
+            }
             int myId = rand();
             if ((rand() % 2) == 0) {
                 myId *= -1;
@@ -35,7 +51,7 @@ int main(int argc, char **argv) {
                 pushFail++;
             }
         }
-        cout << "Successful pushes: \t" << pushSuccess << " \tFailed pushes: \t" << pushFail << endl;
+        cout << "Successful pushes: \t" << pushSuccess << " \tFailed pushes: \t" << pushFail << " \tEmpty Count: \t" << emptyCount << endl;
     }
     /* ***************************************************************
      * Throughly test your stack. You must perform an exhaustive series

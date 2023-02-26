@@ -27,3 +27,6 @@ bool Stack::push(int id, string *s) {
     }
     return pushed;
 }
+bool Stack::isEmpty() {
+    return (top < 0);
+}

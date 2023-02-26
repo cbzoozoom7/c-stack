@@ -19,6 +19,7 @@ class Stack {
 public:
     Stack(int);
     bool push(int, string*);
+    bool isEmpty();
 private:
 
     /* 
