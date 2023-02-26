@@ -22,6 +22,7 @@ public:
     //bool push (Data*);
     bool isEmpty();
     bool peek(Data*);
+    bool pop(Data*);
 private:
 
     /* 

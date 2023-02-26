@@ -13,7 +13,9 @@
 #include <time.h>     /* time */
 #include <time.h>     /* time */
 #include <string>     /* string */
-
+#include <iostream>
+#include "data.h"
 void rand_string(std::string*);
-
+void dataPrint(Data *);
+bool dataEquals(Data *, Data *);
 #endif /* STACKS_FUNCTIONS_H */

@@ -27,4 +27,9 @@ void rand_string(std::string *str){
     delete buffer;
     return;
 }
-
+void dataPrint(Data *d) {
+    std::cout << "ID: \t" << d -> id << " \tInformation: \t" << d -> information << std::endl;
+}
+bool dataEquals(Data *d, Data *other) {
+    return (d -> id == other -> id) && (d -> information == other -> information);
+}

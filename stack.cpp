@@ -43,3 +43,11 @@ bool Stack::peek(Data *d) {
     }
     return peeked;
 }
+bool Stack::pop(Data *d) {
+    bool popped = false;
+    if (peek(d)) {
+        delete stack[top--];
+        popped = true;
+    }
+    return popped;
+}
