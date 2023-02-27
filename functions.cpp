@@ -33,3 +33,57 @@ void dataPrint(Data *d) {
 bool dataEquals(Data *d, Data *other) {
     return (d -> id == other -> id) && (d -> information == other -> information);
 }
+int randInt() {
+    int random = rand();
+    if ((rand() % 2) == 0) {
+        random *= -1;
+    }
+    return random;
+}
+int pushPeek(Stack *s, int id, string *str) {
+    int result = -4;
+    Data input;
+    input.id = id;
+    input.information = *str;
+    if (s -> push(id, str)) {
+        Data *output = new Data;
+        if (s -> peek(output)) {
+            if (dataEquals(&input, output)) {
+                result = 0;
+            } else {
+                result = -3;
+                std::cout << "Bad push." << std::endl;
+            }
+        } else {
+            result = -2;
+            std::cout << "Failed peek after push." << std::endl;
+        }
+        delete output;
+    } else {
+        result = -1;
+    }
+    return result;
+}
+int peekPop(Stack *s) {
+    int result = -4;
+    Data *peekTester = new Data;
+    if (s -> peek(peekTester)) {
+        Data *popTester = new Data;
+        if (s -> pop(popTester)) {
+            if (dataEquals(peekTester, popTester)) {
+                result = 0;
+            } else {
+                result = -3;
+                cout << "Peek does not match pop." << endl;
+            }
+        } else {
+            result = -2;
+            cout << "Peek was allowed, but subseqent pop failed." << endl;
+        }
+        delete popTester;
+    } else {
+        result = -1;
+    }
+    delete peekTester;
+    return result;
+}

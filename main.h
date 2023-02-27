@@ -7,8 +7,10 @@
 #ifndef STACKS_MAIN_H
 #define STACKS_MAIN_H
 #define SCALE 10
+#define CHOICES 6
 // you probably need all these,
 // but if you don't get rid of what you don't need
+//TODO: review which ones I don't need at the end
 #include <stdlib.h>   /* srand, rand */
 #include <time.h>     /* time */
 #include <iostream>   /* cout, endl */

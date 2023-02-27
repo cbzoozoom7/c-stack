@@ -51,3 +51,9 @@ bool Stack::pop(Data *d) {
     }
     return popped;
 }
+Stack::~Stack() {
+    while (!isEmpty()) {
+        delete stack[top--];
+    }
+    delete stack;
+}

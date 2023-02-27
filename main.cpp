@@ -47,68 +47,84 @@ int main(int argc, char **argv) {
             if ((rand() % 2) == 0) {
                 myId *= -1;
             }
-            std::string strtemp;
-            rand_string(&strtemp);
-            if (myStack.push(myId, &strtemp)) {
-                pushSuccess++;
-                Data *pushTester = new Data;
-                if (myStack.peek(pushTester)) {
-                    Data pushed;
-                    pushed.id = myId;
-                    pushed.information = strtemp;
-                    if (!dataEquals(pushTester, &pushed)) {
-                        cout << "Bad push." << endl;
-                    }
-                } else {
-                    cout << "Failed peek after push." << endl;
-                }
-                delete pushTester;
-            } else {
-                pushFail++;
+            std::string *fillingStackString = new string;
+            rand_string(fillingStackString);
+            switch (pushPeek(&myStack, myId, fillingStackString)) {
+                case 0:
+                    pushSuccess++;
+                    break;
+                case -1:
+                    pushFail++;
+                    break;
             }
+            delete fillingStackString;
         }
         cout << "Successful pushes: \t" << pushSuccess << " \tFailed pushes: \t" << pushFail << " \tEmpty Count: \t" << emptyCount << "\nPeeking & popping the whole stack..." << endl;
         int correctPeekPop = 0;
         int incorrectPeekPop = 0;
         int failedPeekPop = 0;
         for (int i = 0; i < (size * SCALE); i++) {
-            Data *fullPeekTester = new Data;
-            if (myStack.peek(fullPeekTester)) {
-                Data *fullPopTester = new Data;
-                if (myStack.pop(fullPopTester)) {
-                    if (dataEquals(fullPeekTester, fullPopTester)) {
-                        correctPeekPop++;
-                    } else {
-                        incorrectPeekPop++;
-                    }
-                } else {
+            switch (peekPop(&myStack)) {
+                case 0:
+                    correctPeekPop++;
+                    break;
+                case -1:
                     failedPeekPop++;
+                    break;
+                case -2:
+                case -3: {
+                    incorrectPeekPop++;
+                    break;
                 }
-                delete fullPopTester;
-            } else {
-                failedPeekPop++;
             }
-            delete fullPeekTester;
         }
-        cout << "Correct Peek Pops: \t" << correctPeekPop << " \tIncorrect Peek Pops: \t" << incorrectPeekPop << "\tFailed Peek Pops: \t" << failedPeekPop << " \t" << (myStack.isEmpty() ? "Stack is empty." : "Stack is NOT empty.") << "\nFilling stack halfway..." << endl;
+        cout << "Correct Peek Pops: \t" << correctPeekPop << " \tIncorrect Peek Pops: \t" << incorrectPeekPop << "\tFailed Peek Pops: \t" << failedPeekPop << " \t";
+        if (myStack.isEmpty()) {
+            cout << "Stack is empty.";
+        } else {
+            cout << "Stack is NOT empty.";
+        }
+        cout << "\nFilling stack halfway..." << endl;
+        for (int i = 0; i < int(size / 2); i++) {
+            string halfStackString = std::to_string(i + 1);
+            myStack.push(i + 1, &halfStackString);
+        }
+        cout << "Here come the random operations." << endl;
+        int randomPushes = 0;
+        int randomPops = 0;
+        int randomFailedPeekOrPop = 0;
+        Data *propData = new Data;
+        for (int i = 0; i < (size * SCALE); i++) {
+            int choice = rand() % CHOICES;
+            switch (choice) {
+            case 0: //push
+            case 1: {//push
+                string *randStackString = new string;
+                rand_string(randStackString);
+                if (pushPeek(&myStack, randInt(), randStackString) == 0) {
+                    randomPushes++;
+                }
+                delete randStackString;
+                break;
+            }
+            case 2: //pop
+            case 3: {//pop
+                if (peekPop(&myStack)) {
+                    randomPops++;
+                }
+                break;
+            }
+            case 4: //peek
+                if (!myStack.peek(propData)) {
+                    randomFailedPeekOrPop++;
+                }
+                break;
+            case 5: //isEmpty
+                myStack.isEmpty();
+            }
+        }
+        delete propData;
+        cout << "Pushed " << randomPushes << " times. \tPopped " << randomPops << " times. \tA peek or pop failed " << randomFailedPeekOrPop << " times. Done" << endl;
     }
-    /* ***************************************************************
-     * Throughly test your stack. You must perform an exhaustive series
-     * of tests on your stack. Show all possible ways your stack can be used
-     * and abused and prove that your stack can gracefully handle ALL cases.
-     * You must use automated testing (no user input). First cover all
-     * explicit cases which you can think of, then execute random operations.
-     * When generating test data, use random ints for ids and random short
-     * strings for string. There is a string generator made for you in the
-     * functions module. You are free to use it or make your own.
-     * ***************************************************************/
-    /* ***************************************************************
-     * Your code will be tested by applying your stack to a custom main
-     * designed to break your code. If it can be broken, you risk a
-     * substantially reduced grade, up to and including a zero.
-     * ***************************************************************/
-    
-    // WHEN YOU SUBMIT, DELETE ALL THESE INSTRUCTIONALCOMMENTS
-    
     return 0;
 }

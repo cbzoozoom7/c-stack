@@ -23,6 +23,7 @@ public:
     bool isEmpty();
     bool peek(Data*);
     bool pop(Data*);
+    ~Stack();
 private:
 
     /* 
